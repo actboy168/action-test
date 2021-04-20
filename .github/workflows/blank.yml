@@ -8,4 +8,8 @@ jobs:
   build:
     runs-on: macos-latest
     steps:
-      - run: sysctl sysctl.proc_translated
+      - uses: actions/checkout@v2
+      - uses: actboy168/setup-lua@master
+        with:
+          luaVersion: 5.4
+      - run: lua test.lua
