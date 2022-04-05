@@ -14,4 +14,4 @@ jobs:
       - uses: actboy168/setup-luamake@master
       - run: sudo apt-get update
       - run: sudo apt-get install -y gcc-aarch64-linux-gnu g++-aarch64-linux-gnu
-      - run: luamake -cc aarch64-linux-gnu-gcc
+      - run: luamake -notest -cc aarch64-linux-gnu-gcc
