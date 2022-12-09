@@ -43,6 +43,30 @@ jobs:
           prepare: |
             pkg_add gcc ninja libinotify
           run: |
+            gcc --version
+            cd luamake
+            ./compile/build.sh
+            cd ../bee.lua
+            ./../luamake/luamake
+  netbsd:
+    runs-on: macos-12
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          path: luamake
+          repository: actboy168/luamake
+          submodules : recursive
+      - uses: actions/checkout@v3
+        with:
+          path: bee.lua
+          repository: actboy168/bee.lua
+          submodules : recursive
+      - uses: vmactions/netbsd-vm@v0
+        with:
+          usesh: true
+          prepare: |
+            pkg_add gcc ninja libinotify
+          run: |
             cd luamake
             ./compile/build.sh
             cd ../bee.lua
