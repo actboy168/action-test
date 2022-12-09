@@ -16,7 +16,7 @@ jobs:
         uses: uraimo/run-on-arch-action@v2
         with:
           arch: aarch64
-          distro: ubuntu18.04
+          distro: ubuntu20.04
           dockerRunArgs: |
             --volume "${PWD}:/luamake"
           install: |
