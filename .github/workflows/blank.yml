@@ -11,6 +11,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           repository: actboy168/luamake
+          submodules : recursive
       - name: Build
         uses: uraimo/run-on-arch-action@v2
         with:
