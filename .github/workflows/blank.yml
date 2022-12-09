@@ -23,7 +23,6 @@ jobs:
             apt-get update -q -y
             apt-get install -q -y make gcc g++ ninja-build
           run: |
-            set -x
             cd /luamake
             ./compile/build.sh
 
