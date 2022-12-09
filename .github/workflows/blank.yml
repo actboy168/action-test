@@ -41,7 +41,7 @@ jobs:
         with:
           usesh: true
           prepare: |
-            pkg_add gcc ninja libinotify
+            pkg_add gcc-11 ninja libinotify
           run: |
             gcc --version
             cd luamake
@@ -65,8 +65,9 @@ jobs:
         with:
           usesh: true
           prepare: |
-            pkg_add gcc ninja libinotify
+            pkg_add gcc-11 ninja libinotify
           run: |
+            gcc --version
             cd luamake
             ./compile/build.sh
             cd ../bee.lua
