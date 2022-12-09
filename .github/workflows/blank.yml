@@ -22,6 +22,8 @@ jobs:
         with:
           usesh: true
           prepare: |
-            pkg install -y gcc g++ ninja-build
+            pkg install -y gcc ninja
           run: |
             freebsd-version
+            gcc --version
+            g++ --version
