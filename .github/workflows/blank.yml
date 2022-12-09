@@ -6,12 +6,22 @@ on:
     branches: [ main ]
 jobs:
   build:
-    runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v3
         with:
-          repository: actboy168/bee.lua
-      - uses: actboy168/setup-luamake@master
-      - run: sudo apt-get update
-      - run: sudo apt-get install -y gcc-aarch64-linux-gnu g++-aarch64-linux-gnu
-      - run: luamake -notest -cc aarch64-linux-gnu-gcc
+          repository: actboy168/luamake
+      - name: Build
+        uses: uraimo/run-on-arch-action@v2
+        with:
+          arch: aarch64
+          distro: ubuntu18.04
+          dockerRunArgs: |
+            --volume "${PWD}:/luamake"
+          install: |
+            apt-get update -q -y
+            apt-get install -q -y make gcc g++ ninja-build
+          run: |
+            set -x
+            cd /luamake
+            ./compile/linux.sh
+
