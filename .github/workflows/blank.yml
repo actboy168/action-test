@@ -22,7 +22,7 @@ jobs:
         with:
           usesh: true
           prepare: |
-            pkg install -y gcc ninja
+            pkg install -y gcc ninja libinotify
           run: |
             cd luamake
             ./compile/build.sh
