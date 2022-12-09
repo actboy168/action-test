@@ -22,8 +22,9 @@ jobs:
         with:
           usesh: true
           prepare: |
-            pkg install -y gcc ninja
+            pkg install -y ninja
           run: |
-            freebsd-version
-            gcc --version
-            g++ --version
+            cd luamake
+            ./compile/build.sh
+            cd ../bee.lua
+            ./../luamake/luamake
