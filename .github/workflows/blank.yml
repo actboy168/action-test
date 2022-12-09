@@ -10,7 +10,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
+          path: luamake
           repository: actboy168/luamake
+          submodules : recursive
+      - uses: actions/checkout@v3
+        with:
+          path: bee.lua
+          repository: actboy168/bee.lua
           submodules : recursive
       - name: Build
         uses: uraimo/run-on-arch-action@v2
@@ -18,11 +24,12 @@ jobs:
           arch: aarch64
           distro: ubuntu20.04
           dockerRunArgs: |
-            --volume "${PWD}:/luamake"
+            --volume "${PWD}:/actboy168"
           install: |
             apt-get update -q -y
             apt-get install -q -y make gcc g++ ninja-build
           run: |
-            cd /luamake
-            ./compile/build.sh
-
+            cd /actboy168/luamake
+            ./compile/install.sh
+            cd /actboy168/bee.lua
+            luamake
