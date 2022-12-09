@@ -30,6 +30,6 @@ jobs:
             apt-get install -q -y make gcc g++ ninja-build
           run: |
             cd /actboy168/luamake
-            ./compile/builf.sh
+            ./compile/build.sh
             cd /actboy168/bee.lua
             /actboy168/luamake/luamake
