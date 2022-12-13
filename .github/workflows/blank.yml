@@ -1,8 +1,8 @@
 name: CI
 on: [ push ]
 jobs:
-  linux-arm:
-    runs-on: ubuntu-latest
+  windows-mingw:
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v3
         with:
@@ -13,88 +13,8 @@ jobs:
         with:
           repository: actboy168/bee.lua
           path: bee.lua
-      - uses: uraimo/run-on-arch-action@v2
-        with:
-          arch: armv7
-          distro: ubuntu20.04
-          dockerRunArgs: |
-            --volume "${PWD}:/actboy168"
-          install: |
-            apt-get update -q -y
-            apt-get install -q -y make gcc g++ ninja-build
-          run: |
-            cd /actboy168/luamake
-            ./compile/build.sh
-            cd /actboy168/bee.lua
-            /actboy168/luamake/luamake
-  freebsd:
-    runs-on: macos-12
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          path: luamake
-          repository: actboy168/luamake
-          submodules : recursive
-      - uses: actions/checkout@v3
-        with:
-          path: bee.lua
-          repository: actboy168/bee.lua
-          submodules : recursive
-      - uses: vmactions/freebsd-vm@v0
-        with:
-          usesh: true
-          prepare: |
-            pkg install -y gcc ninja libinotify
-          run: |
-            cd luamake
-            ./compile/build.sh
-            cd ../bee.lua
-            ./../luamake/luamake
-  openbsd:
-    runs-on: macos-12
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          path: luamake
-          repository: actboy168/luamake
-          submodules : recursive
-      - uses: actions/checkout@v3
-        with:
-          path: bee.lua
-          repository: actboy168/bee.lua
-          submodules : recursive
-      - uses: vmactions/openbsd-vm@v0
-        with:
-          usesh: true
-          prepare: |
-            pkg_add ninja libinotify
-          run: |
-            gcc --version
-            cd luamake
-            ./compile/build.sh
-            cd ../bee.lua
-            ./../luamake/luamake
-  netbsd:
-    runs-on: macos-12
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          path: luamake
-          repository: actboy168/luamake
-          submodules : recursive
-      - uses: actions/checkout@v3
-        with:
-          path: bee.lua
-          repository: actboy168/bee.lua
-          submodules : recursive
-      - uses: vmactions/netbsd-vm@v0
-        with:
-          usesh: true
-          prepare: |
-            pkg_add ninja libinotify
-          run: |
-            gcc --version
-            cd luamake
-            ./compile/build.sh
-            cd ../bee.lua
-            ./../luamake/luamake
+      - uses: msys2/setup-msys2@v2
+      - shell: msys2 {0}
+        run: |
+          uname -a
+          ls
