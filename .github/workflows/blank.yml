@@ -17,7 +17,7 @@ jobs:
         with:
           usesh: true
           prepare: |
-            pkg_add gcc11 ninja libinotify
+            pkg_add ninja libinotify
           run: |
             gcc --version
             cd luamake
