@@ -20,8 +20,8 @@ jobs:
             mingw-w64-x86_64-gcc
             mingw-w64-x86_64-ninja
       - shell: msys2 {0}
-        run: |
-          cd ./luamake
-          ./compile/build.sh notest
-          cd ../bee.lua
-          ./../luamake/luamake
+        working-directory: luamake
+        run: ./compile/build.sh notest
+      - shell: msys2 {0}
+        working-directory: bee.lua
+        run: ./../luamake/luamake
