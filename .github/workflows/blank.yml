@@ -24,4 +24,4 @@ jobs:
           cd ./luamake
           ./compile/build.sh notest
           cd ../bee.lua
-          luamake
+          ./../luamake/luamake
