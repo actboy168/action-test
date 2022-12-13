@@ -1,27 +1,22 @@
 name: CI
 on: [ push ]
 jobs:
-  windows-mingw:
-    runs-on: windows-latest
+  openbsd:
+    runs-on: macos-12
     steps:
       - uses: actions/checkout@v3
         with:
           path: luamake
           repository: actboy168/luamake
-          submodules : recursive
       - uses: actions/checkout@v3
         with:
-          repository: actboy168/bee.lua
           path: bee.lua
-      - uses: msys2/setup-msys2@v2
+          repository: actboy168/bee.lua
+          submodules : recursive
+      - uses: vmactions/openbsd-vm@v0
         with:
-          update: true
-          install: >-
-            mingw-w64-x86_64-gcc
-            mingw-w64-x86_64-ninja
-      - shell: msys2 {0}
-        working-directory: luamake
-        run: ./compile/build.sh notest
-      - shell: msys2 {0}
-        working-directory: bee.lua
-        run: ./../luamake/luamake
+          usesh: true
+          prepare: |
+            pkg_add gcc ninja libinotify
+          run: |
+            gcc --version
