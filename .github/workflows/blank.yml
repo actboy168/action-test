@@ -4,10 +4,15 @@ jobs:
   windows-mingw:
     runs-on: windows-latest
     steps:
-      - uses: actboy168/setup-luamake@master
+      - uses: actions/checkout@v3
+        with:
+          path: luamake
+          repository: actboy168/luamake
+          submodules : recursive
       - uses: actions/checkout@v3
         with:
           repository: actboy168/bee.lua
+          path: bee.lua
       - uses: msys2/setup-msys2@v2
         with:
           update: true
@@ -16,4 +21,7 @@ jobs:
             mingw-w64-x86_64-ninja
       - shell: msys2 {0}
         run: |
+          cd ./luamake
+          ./compile/build.sh notest
+          cd ../bee.lua
           luamake
