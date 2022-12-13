@@ -16,8 +16,8 @@ jobs:
       - uses: vmactions/openbsd-vm@v0
         with:
           usesh: true
-          prepare: |
-            pkg_add gcc-11.2.0p3 ninja libinotify
+          prepare:
+            pkg_add gcc-11.2.0p3 g++-11.2.0p3 ninja libinotify
           run: |
             cd luamake
             ./compile/build.sh notest
