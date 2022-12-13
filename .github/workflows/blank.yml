@@ -19,4 +19,4 @@ jobs:
           prepare: |
             pkg_add gcc-11.2.0p3 ninja libinotify
           run: |
-            gcc --version
+            egcc --version
