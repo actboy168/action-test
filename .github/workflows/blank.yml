@@ -8,11 +8,11 @@ jobs:
         with:
           path: luamake
           repository: actboy168/luamake
+          submodules : recursive
       - uses: actions/checkout@v3
         with:
           path: bee.lua
           repository: actboy168/bee.lua
-          submodules : recursive
       - uses: vmactions/openbsd-vm@v0
         with:
           usesh: true
