@@ -1,7 +1,7 @@
 name: CI
 on: [ push ]
 jobs:
-  openbsd:
+  netbsd:
     runs-on: macos-12
     steps:
       - uses: actions/checkout@v3
@@ -13,12 +13,13 @@ jobs:
         with:
           path: bee.lua
           repository: actboy168/bee.lua
-      - uses: vmactions/openbsd-vm@v0
+      - uses: vmactions/netbsd-vm@v0
         with:
           usesh: true
-          prepare:
+          prepare: |
             pkg_add gcc-11.2.0p3 g++-11.2.0p3 ninja libinotify
           run: |
+            gcc --version
             cd luamake
             ./compile/build.sh notest
             cd ../bee.lua
