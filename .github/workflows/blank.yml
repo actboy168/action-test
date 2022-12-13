@@ -19,4 +19,7 @@ jobs:
           prepare: |
             pkg_add gcc-11.2.0p3 ninja libinotify
           run: |
-            egcc --version
+            cd luamake
+            ./compile/build.sh notest
+            cd ../bee.lua
+            ./../luamake/luamake
