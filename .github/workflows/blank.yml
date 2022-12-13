@@ -17,6 +17,6 @@ jobs:
         with:
           usesh: true
           prepare: |
-            pkg_add gcc ninja libinotify
+            pkg_add gcc-11.2.0p3 ninja libinotify
           run: |
             gcc --version
