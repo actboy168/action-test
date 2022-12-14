@@ -1,23 +1,30 @@
 name: CI
 on: [ push ]
 jobs:
-  linux-arm:
+  linux-arm64:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
         with:
+          path: luamake
           repository: actboy168/luamake
+          submodules : recursive
+      - uses: actions/checkout@v3
+        with:
+          path: lua-debug
+          repository: actboy168/lua-debug
           submodules : recursive
       - uses: uraimo/run-on-arch-action@v2
         with:
-          arch: armv6
-          distro: alpine_latest
+          arch: aarch64
+          distro: ubuntu20.04
           dockerRunArgs: |
             --volume "${PWD}:/actboy168"
           install: |
-            apk update
-            apk upgrade
-            apk add gcc g++ ninja
+            apt-get update -q -y
+            apt-get install -q -y gcc g++ ninja-build
           run: |
-            uname -m
-            ./compile/build.sh
+            cd /actboy168/luamake
+            ./compile/build.sh notest
+            cd /actboy168/lua-debug
+            /actboy168/luamake/luamake
