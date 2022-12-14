@@ -10,12 +10,23 @@ jobs:
           submodules : recursive
       - uses: uraimo/run-on-arch-action@v2
         with:
-          arch: aarch64
+          arch: armv6
+          distro: alpine_latest
+          dockerRunArgs: |
+            --volume "${PWD}:/actboy168"
+          install: |
+            apt update
+            apt add ninja-build
+          run: |
+            ./compile/build.sh notest
+      - uses: uraimo/run-on-arch-action@v2
+        with:
+          arch: armv7
           distro: ubuntu20.04
           dockerRunArgs: |
             --volume "${PWD}:/actboy168"
           install: |
-            apt-get update -q -y
-            apt-get install -q -y gcc g++ ninja-build
+            apt update
+            apt add ninja-build
           run: |
-            ./compile/build.sh notest
+            ./luamake version
