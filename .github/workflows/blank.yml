@@ -26,7 +26,7 @@ jobs:
           dockerRunArgs: |
             --volume "${PWD}:/actboy168"
           install: |
-            apt update
-            apt add ninja-build
+            apk update
+            apk add ninja-build
           run: |
             ./luamake version
