@@ -4,11 +4,26 @@ jobs:
   linux-arm:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
+        with:
+          repository: actboy168/luamake
+          submodules : recursive
       - uses: uraimo/run-on-arch-action@v2
         with:
           arch: armv6
           distro: ubuntu20.04
           dockerRunArgs: |
             --volume "${PWD}:/actboy168"
+          install: |
+            apt-get update -q -y
+            apt-get install -q -y gcc g++ ninja-build
           run: |
-            uname -m
+            ./compile/build.sh notest
+      - uses: uraimo/run-on-arch-action@v2
+        with:
+          arch: armv7
+          distro: ubuntu20.04
+          dockerRunArgs: |
+            --volume "${PWD}:/actboy168"
+          run: |
+            ./luamake version
