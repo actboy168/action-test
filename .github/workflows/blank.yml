@@ -16,7 +16,7 @@ jobs:
             --volume "${PWD}:/actboy168"
           install: |
             apk update
-            apk add ninja
+            apk add gcc g++ ninja
           run: |
             ./compile/build.sh notest
       - uses: uraimo/run-on-arch-action@v2
