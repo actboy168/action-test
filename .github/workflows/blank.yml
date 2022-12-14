@@ -20,3 +20,4 @@ jobs:
             pkg_add gcc10 ninja libinotify
           run: |
             gcc --version
+            gcc-10 --version
