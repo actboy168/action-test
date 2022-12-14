@@ -1,23 +1,14 @@
 name: CI
 on: [ push ]
 jobs:
-  netbsd:
-    runs-on: macos-12
+  linux-arm:
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: uraimo/run-on-arch-action@v2
         with:
-          path: luamake
-          repository: actboy168/luamake
-          submodules : recursive
-      - uses: actions/checkout@v3
-        with:
-          path: bee.lua
-          repository: actboy168/bee.lua
-      - uses: vmactions/netbsd-vm@v0
-        with:
-          usesh: true
-          prepare: |
-            pkg_add gcc10 ninja libinotify
+          arch: armv7
+          distro: ubuntu20.04
+          dockerRunArgs: |
+            --volume "${PWD}:/actboy168"
           run: |
-            gcc --version
-            gcc-10 --version
+            uname -m
