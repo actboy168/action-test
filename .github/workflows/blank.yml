@@ -8,10 +8,15 @@ jobs:
         with:
           repository: actboy168/luamake
           submodules : recursive
+      - uses: actions/checkout@v3
+        with:
+          path: json.lua
+          repository: actboy168/json.lua
+          submodules : recursive
       - uses: uraimo/run-on-arch-action@v2
         with:
-          arch: armv6
-          distro: alpine_latest
+          arch: armv7
+          distro: ubuntu20.04
           dockerRunArgs: |
             --volume "${PWD}:/actboy168"
           install: |
@@ -19,11 +24,5 @@ jobs:
             apk add gcc g++ ninja
           run: |
             ./compile/build.sh notest
-      - uses: uraimo/run-on-arch-action@v2
-        with:
-          arch: armv7
-          distro: ubuntu20.04
-          dockerRunArgs: |
-            --volume "${PWD}:/actboy168"
-          run: |
-            ./luamake version
+            cd json.lua
+            ./../luamake lua test/conformance.lua
