@@ -16,7 +16,7 @@ jobs:
       - uses: uraimo/run-on-arch-action@v2
         with:
           arch: armv7
-          distro: ubuntu16.04
+          distro: ubuntu18.04
           dockerRunArgs: |
             --volume "${PWD}:/actboy168"
           install: |
