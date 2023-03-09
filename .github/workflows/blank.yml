@@ -19,18 +19,20 @@ jobs:
           apt-get install -y software-properties-common
           add-apt-repository -y ppa:ubuntu-toolchain-r/test # For gcc-9 and g++-9
           add-apt-repository -y ppa:git-core/ppa # For git>=2.18.
-          update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 100
-          update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-9 100
           apt-get update
-          apt-get install -y sudo git
+          apt-get install -y git
       - name: Install gcc
         if: ${{ matrix.platform == 'linux-x64' }}
         run: |
           apt-get install -y gcc-9 g++-9
+          update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 100
+          update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-9 100
       - name: Install gcc
         if: ${{ matrix.platform == 'linux-arm64' }}
         run: |
           apt-get install -y gcc-9-aarch64-linux-gnu g++-9-aarch64-linux-gnu
+          update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9-aarch64-linux-gnu 100
+          update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-9-aarch64-linux-gnu 100
 
       - uses: actions/checkout@v3
         with:
