@@ -66,7 +66,7 @@ jobs:
         with:
           usesh: true
           prepare: |
-            pkgin ninja libinotify
+            pkg_add ninja libinotify
           run: |
             cd luamake
             ./compile/build.sh notest
