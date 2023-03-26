@@ -21,9 +21,10 @@ jobs:
             pkg install -y ninja libinotify
           run: |
             cd luamake
-            ./compile/build.sh
+            ./compile/build.sh notest
             cd ../bee.lua
-            ./../luamake/luamake
+            ./../luamake/luamake -notest
+            ./build/bin/bootstrap test/test.lua -v
   openbsd:
     runs-on: macos-12
     steps:
@@ -44,9 +45,10 @@ jobs:
             pkg_add ninja libinotify
           run: |
             cd luamake
-            ./compile/build.sh
+            ./compile/build.sh notest
             cd ../bee.lua
-            ./../luamake/luamake
+            ./../luamake/luamake -notest
+            ./build/bin/bootstrap test/test.lua -v
   netbsd:
     runs-on: macos-12
     steps:
@@ -64,9 +66,10 @@ jobs:
         with:
           usesh: true
           prepare: |
-            pkg_add ninja libinotify
+            pkgin ninja libinotify
           run: |
             cd luamake
-            ./compile/build.sh
+            ./compile/build.sh notest
             cd ../bee.lua
-            ./../luamake/luamake
+            ./../luamake/luamake -notest
+            ./build/bin/bootstrap test/test.lua -v
