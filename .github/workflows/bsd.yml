@@ -1,5 +1,8 @@
 name: CI
-on: [ push ]
+on:
+  push:
+    paths:
+      - '.github/workflows/bsd.yml'
 jobs:
   freebsd:
     runs-on: macos-12
