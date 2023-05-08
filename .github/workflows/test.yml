@@ -1,5 +1,8 @@
 name: test
-on: push
+on:
+  push:
+    paths:
+      - '.github/workflows/test.yml'
 jobs:
   linux:
     strategy:
@@ -29,4 +32,4 @@ jobs:
             pushd luamake
             ./compile/build.sh notest
             popd
-            ./luamake/luamake
+            ./luamake/luamake -mode debug
