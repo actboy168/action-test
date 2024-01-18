@@ -12,11 +12,11 @@ jobs:
         repository: ejoy/ant
         submodules: true
     - uses: actboy168/setup-luamake@master
-    - run: luamake
-    - run: luamake tools
+    - run: luamake -mode release
+    - run: luamake -mode release tools
     - uses: actions/upload-artifact@v4
       with:
-        name: ant-windows.zip
+        name: ant-windows
         path: |
           bin/
           engine/
