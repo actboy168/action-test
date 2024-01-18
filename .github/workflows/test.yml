@@ -13,3 +13,13 @@ jobs:
         submodules: true
     - uses: actboy168/setup-luamake@master
     - run: luamake
+    - run: luamake tools
+    - uses: actions/upload-artifact@v4
+      with:
+        name: ant-windows.zip
+        path: |
+          bin/
+          engine/
+          pkg/
+          test/
+          tools/
