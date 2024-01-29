@@ -1,0 +1,30 @@
+name: CI
+on:
+  push:
+    paths:
+      - '.github/workflows/bsd.yml'
+jobs:
+  openbsd:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: luamake
+          repository: actboy168/luamake
+          submodules : recursive
+      - uses: actions/checkout@v4
+        with:
+          path: bee.lua
+          repository: actboy168/bee.lua
+          submodules : recursive
+      - uses: vmactions/openbsd-vm@v1
+        with:
+          usesh: true
+          prepare: |
+            pkg_add ninja libinotify
+          run: |
+            cd luamake
+            ./compile/build.sh notest
+            cd ../bee.lua
+            ./../luamake/luamake -notest
+            ./build/bin/bootstrap test/test.lua -v
