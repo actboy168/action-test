@@ -50,7 +50,8 @@ jobs:
             cd luamake
             ./compile/build.sh notest
             cd ../bee.lua
-            ./../luamake/luamake
+            ./../luamake/luamake -notest
+            ./build/bin/bootstrap test/test.lua -v
   netbsd:
     runs-on: ubuntu-latest
     steps:
@@ -68,9 +69,10 @@ jobs:
         with:
           usesh: true
           prepare: |
-            pkg_add ninja libinotify
+            /usr/sbin/pkg_add ninja-build libinotify
           run: |
             cd luamake
             ./compile/build.sh notest
             cd ../bee.lua
-            ./../luamake/luamake
+            ./../luamake/luamake -notest
+            ./build/bin/bootstrap test/test.lua -v
