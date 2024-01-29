@@ -2,7 +2,7 @@ name: CI
 on:
   push:
     paths:
-      - '.github/workflows/bsd.yml'
+      - '.github/workflows/openbsd.yml'
 jobs:
   openbsd:
     runs-on: ubuntu-latest
