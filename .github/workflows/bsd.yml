@@ -50,8 +50,7 @@ jobs:
             cd luamake
             ./compile/build.sh notest
             cd ../bee.lua
-            ./../luamake/luamake -notest
-            ./build/bin/bootstrap test/test.lua -v
+            ./../luamake/luamake
   netbsd:
     runs-on: macos-12
     steps:
@@ -74,5 +73,4 @@ jobs:
             cd luamake
             ./compile/build.sh notest
             cd ../bee.lua
-            ./../luamake/luamake -notest
-            ./build/bin/bootstrap test/test.lua -v
+            ./../luamake/luamake
