@@ -1,4 +1,4 @@
-name: CI
+name: openbsd
 on:
   push:
     paths:
