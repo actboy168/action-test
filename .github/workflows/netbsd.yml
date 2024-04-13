@@ -20,7 +20,7 @@ jobs:
       - uses: cross-platform-actions/action@v0.23.0
         with:
           operating_system: netbsd
-          version: '9.3'
+          version: '10.0'
           run: |
             sudo pkgin -y install ninja-build libinotify
             cd luamake
