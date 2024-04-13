@@ -22,7 +22,7 @@ jobs:
           operating_system: netbsd
           version: '9.3'
           run: |
-            sudo /usr/sbin/pkg_add ninja-build libinotify
+            sudo pkgin -y install ninja-build libinotify
             cd luamake
             ./compile/build.sh notest
             cd ../bee.lua
