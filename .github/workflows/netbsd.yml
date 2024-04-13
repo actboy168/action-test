@@ -4,7 +4,7 @@ on:
     paths:
       - '.github/workflows/netbsd.yml'
 jobs:
-  freebsd:
+  netbsd:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -22,7 +22,7 @@ jobs:
           operating_system: netbsd
           version: '9.3'
           run: |
-            sudo pkg_add ninja-build libinotify
+            sudo /usr/sbin/pkg_add ninja-build libinotify
             cd luamake
             ./compile/build.sh notest
             cd ../bee.lua
