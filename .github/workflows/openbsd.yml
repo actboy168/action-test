@@ -22,7 +22,7 @@ jobs:
           operating_system: openbsd
           version: '7.4'
           run: |
-            sudo pkg_add -y ninja libinotify
+            sudo pkg_add ninja libinotify
             cd luamake
             ./compile/build.sh notest
             cd ../bee.lua
