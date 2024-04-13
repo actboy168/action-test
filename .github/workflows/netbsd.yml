@@ -23,8 +23,6 @@ jobs:
           version: '9.3'
           run: |
             sudo pkgin -y install ninja-build libinotify
-            gcc --version
-            clang --version
             cd luamake
             ./compile/build.sh notest
             cd ../bee.lua
