@@ -17,12 +17,12 @@ jobs:
           path: bee.lua
           repository: actboy168/bee.lua
           submodules : recursive
-      - uses: vmactions/openbsd-vm@v1
+      - uses: cross-platform-actions/action@v0.23.0
         with:
-          usesh: true
-          prepare: |
-            pkg_add ninja libinotify
+          operating_system: openbsd
+          version: '7.4'
           run: |
+            sudo pkg_add -y ninja libinotify
             cd luamake
             ./compile/build.sh notest
             cd ../bee.lua
