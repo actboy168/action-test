@@ -39,6 +39,5 @@ jobs:
             cd luamake
             ./compile/build.sh notest
             cd ../bee.lua
-            ./../luamake/luamake -notest
+            ./../luamake/luamake -notest -sanitize
             ./build/bin/bootstrap test/test.lua -v
-            
