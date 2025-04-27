@@ -14,4 +14,4 @@ jobs:
           submodules : recursive
       - run: |
           cd luamake
-          .\compile\build.bat notest
+          .\compile\msvc\find_msvc.bat
