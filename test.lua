@@ -1,16 +1,14 @@
-local function shell(command)
-    local f = assert(io.popen(command, "r"))
-    local r = f:read "l"
-    f:close()
-    return r
+local function read_registry_key(path, key)
+    local f = io.popen(string.format("reg query \"%s\" /v \"%s\"", path, key), "r")
+    if f then
+        for l in f:lines() do
+            local r = l:match "^    [^%s]+    [^%s]+    (.*)$"
+            if r then
+                f:close()
+                return r
+            end
+        end
+     end
 end
-
-local function get_env(name)
-    name = "%"..name.."%"
-    local value = shell("echo "..name)
-    if value == name then
-        return ""
-    end
-    return value
-end
-print(shell "wmic cpu get Architecture")
+local PROCESSOR_ARCHITECTURE = read_registry_key([[HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment]], "PROCESSOR_ARCHITECTURE")
+print(PROCESSOR_ARCHITECTURE)
