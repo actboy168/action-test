@@ -7,6 +7,9 @@ jobs:
   test:
     runs-on: windows-11-arm
     steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
       - uses: actboy168/setup-lua@master
         with:
           luaVersion: '5.4'
