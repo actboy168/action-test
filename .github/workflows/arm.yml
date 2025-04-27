@@ -1,0 +1,17 @@
+name: arm
+on:
+  push:
+    paths:
+      - '.github/workflows/arm.yml'
+jobs:
+  test:
+    runs-on: windows-11-arm
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: luamake
+          repository: actboy168/luamake
+          submodules : recursive
+      - run: |
+          cd luamake
+          .\compile\build.bat notest
