@@ -15,3 +15,4 @@ jobs:
           luaVersion: '5.4'
       - run: |
           lua test.lua
+          
