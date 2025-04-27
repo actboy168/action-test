@@ -12,6 +12,13 @@ jobs:
           path: luamake
           repository: actboy168/luamake
           submodules : recursive
+      - uses: actions/checkout@v4
+        with:
+          path: bee.lua
+          repository: actboy168/bee.lua
+          submodules : recursive
       - run: |
           cd luamake
-          .\compile\build.bat
+          .\compile\build.bat notest
+          cd ..\bee.lua
+          .\..\luamake\luamake.exe
