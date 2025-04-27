@@ -10,12 +10,5 @@ jobs:
       - uses: actboy168/setup-lua@master
         with:
           luaVersion: '5.4'
-      - uses: actions/checkout@v4
-        with:
-          path: luamake
-          repository: actboy168/luamake
-          submodules : recursive
       - run: |
-          cd luamake
           lua test.lua
-          .\compile\build.bat
