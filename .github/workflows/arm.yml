@@ -9,10 +9,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          submodules: true
-      - uses: actboy168/setup-lua@master
-        with:
-          luaVersion: '5.4'
+          path: luamake
+          repository: actboy168/luamake
+          submodules : recursive
       - run: |
-          lua test.lua
-    
+          cd luamake
+          .\compile\build.bat
