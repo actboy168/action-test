@@ -13,4 +13,4 @@ local function get_env(name)
     end
     return value
 end
-print(get_env "PROCESSOR_ARCHITECTURE")
+print(shell "wmic cpu get Architecture")
