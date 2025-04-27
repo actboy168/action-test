@@ -13,5 +13,6 @@ jobs:
           repository: actboy168/luamake
           submodules : recursive
       - run: |
+          echo %PROCESSOR_ARCHITECTURE%
           cd luamake
           .\compile\build.bat
